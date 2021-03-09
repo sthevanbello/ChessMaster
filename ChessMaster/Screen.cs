@@ -16,13 +16,13 @@ namespace ChessMaster
             {
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    if (board.Peace(i, j) == null)
+                    if (board.PieceOnTheBoard(i, j) == null)
                     {
                         Console.Write("_ ");
                     }
                     else
                     {
-                        Console.Write($"{board.Peace(i, j)} ");
+                        Console.Write($"{board.PieceOnTheBoard(i, j)} ");
                     }
                 }
                 Console.WriteLine();
