@@ -14,22 +14,51 @@ namespace ChessMaster
 
             for (int i = 0; i < board.Rows; i++)
             {
+                Console.Write($"{8 - i} ");
+
                 for (int j = 0; j < board.Columns; j++)
                 {
                     if (board.PieceOnTheBoard(i, j) == null)
                     {
-                        Console.Write("_ ");
+                        Console.Write("- ");
                     }
                     else
                     {
-                        Console.Write($"{board.PieceOnTheBoard(i, j)} ");
+                        PrintingPiece(board.PieceOnTheBoard(i, j));
+                        Console.Write(" ");
                     }
+
                 }
+
+
+
                 Console.WriteLine();
 
             }
 
+            Console.Write($"  a b c d e f g h");
+        }
+
+        public static void PrintingPiece(Pieces piece)
+        {
+
+            if (piece.Color == Colors.White)
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"{piece}");
+                Console.ForegroundColor = aux;
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{piece}");
+                Console.ForegroundColor = aux;
+            }
         }
 
     }
+
 }
+

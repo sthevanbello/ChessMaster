@@ -8,11 +8,24 @@ namespace ChessMaster
     {
         static void Main(string[] args)
         {
-            ChessPosition position = new ChessPosition('c', 7);
+            try
+            {
+                Board board = new Board(8, 8);
 
-            Console.WriteLine(position);
 
-            Console.WriteLine(position.ToPosition());
+                board.InputPiece(new Rook(board, Colors.White), new Position(0, 0));
+                board.InputPiece(new Rook(board, Colors.Black), new Position(1, 3));
+                board.InputPiece(new King(board, Colors.White), new Position(2, 4));
+                board.InputPiece(new King(board, Colors.Black), new Position(3, 5));
+
+                Screen.PrintBoard(board);
+            }
+            catch (BoardException ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
 
             Console.ReadKey();
         }
