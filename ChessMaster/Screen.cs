@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ChessMaster.BoardChess;
 using System.Text;
 using System.Threading.Tasks;
+using ChessMaster.Chess;
 
 namespace ChessMaster
 {
@@ -27,13 +28,9 @@ namespace ChessMaster
                         PrintingPiece(board.PieceOnTheBoard(i, j));
                         Console.Write(" ");
                     }
-
                 }
 
-
-
                 Console.WriteLine();
-
             }
 
             Console.Write($"  a b c d e f g h");
@@ -56,6 +53,16 @@ namespace ChessMaster
                 Console.Write($"{piece}");
                 Console.ForegroundColor = aux;
             }
+        }
+
+        public static ChessPosition ReadPositionChess()
+        {
+
+            string s = Console.ReadLine();
+            char column = s[0];
+            int row = int.Parse($"{s[1]}");
+
+            return new ChessPosition(column, row);
         }
 
     }

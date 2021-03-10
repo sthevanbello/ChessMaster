@@ -10,19 +10,30 @@ namespace ChessMaster
         {
             try
             {
-                Board board = new Board(8, 8);
+                GameChess game = new GameChess();
+                while (!game.Finished)
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(game.Board);
 
+                    
 
-                board.InputPiece(new Rook(board, Colors.White), new Position(0, 0));
-                board.InputPiece(new Rook(board, Colors.Black), new Position(1, 3));
-                board.InputPiece(new King(board, Colors.White), new Position(2, 4));
-                board.InputPiece(new King(board, Colors.Black), new Position(3, 5));
+                    Console.Write("\n\nOrigin: ");
+                    Position origin = Screen.ReadPositionChess().ToPosition();
 
-                Screen.PrintBoard(board);
+                    Console.Write("Destiny: ");
+                    Position destiny = Screen.ReadPositionChess().ToPosition();
+
+                    game.MoveExecute(origin, destiny);
+                }
+
             }
             catch (BoardException ex)
             {
-
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
             }
 

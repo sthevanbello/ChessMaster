@@ -42,8 +42,25 @@ namespace ChessMaster.BoardChess
             {
                 throw new BoardException("There is a piece in this position");
             }
+            
+
             Piece[position.Row, position.Column] = piece;
+
             piece.Position = position;
+        }
+
+        public Pieces RemovePiece(Position position)
+        {
+            if (PieceExist(position))
+            {
+                Pieces aux = PieceOnTheBoard(position);
+                aux.Position = null;
+
+                Piece[position.Row, position.Column] = null;
+
+                return aux;
+            }
+            return null;
         }
 
         public bool PositionValid(Position pos)

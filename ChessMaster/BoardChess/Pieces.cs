@@ -22,6 +22,10 @@ namespace ChessMaster.BoardChess
             QuantityMovies = 0;
         }
 
+        public void IncreaseQuantityMoves()
+        {
+            QuantityMovies++;
+        }
 
     }
 }
