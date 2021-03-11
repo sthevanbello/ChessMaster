@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessMaster.BoardChess
 {
-    class Pieces
+    abstract class Pieces
     {
 
         public Position Position { get; set; }
@@ -27,5 +27,6 @@ namespace ChessMaster.BoardChess
             QuantityMovies++;
         }
 
+        public abstract bool[,] PossiblesMoves();
     }
 }

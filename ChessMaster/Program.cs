@@ -16,17 +16,19 @@ namespace ChessMaster
                     Console.Clear();
                     Screen.PrintBoard(game.Board);
 
-                    
-
                     Console.Write("\n\nOrigin: ");
                     Position origin = Screen.ReadPositionChess().ToPosition();
 
-                    Console.Write("Destiny: ");
+                    bool[,] posiblesPositions = game.Board.PieceOnTheBoard(origin).PossiblesMoves();
+                    
+                    Console.Clear();
+                    Screen.PrintBoard(game.Board, posiblesPositions);
+
+                    Console.Write("\n\nDestiny: ");
                     Position destiny = Screen.ReadPositionChess().ToPosition();
 
                     game.MoveExecute(origin, destiny);
                 }
-
             }
             catch (BoardException ex)
             {
