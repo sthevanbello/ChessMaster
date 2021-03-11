@@ -17,6 +17,14 @@ namespace ChessMaster
             PrintCatchedPieces(game);
             Console.WriteLine($"\n\nTurno: {game.Turn}");
             Console.WriteLine($"\nWaiting for player: {game.ActualPlayer}");
+            if (game.Xeque)
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("XEQUE!");
+                Console.ForegroundColor = aux;
+
+            }
         }
 
         public static void PrintCatchedPieces(GameChess game)
@@ -31,7 +39,7 @@ namespace ChessMaster
             Console.Write($"\nBlack: ");
             PrintSet(game.CatchedPieces(Colors.Black));
             Console.ForegroundColor = aux;
-            
+
         }
 
         public static void PrintSet(HashSet<Pieces> set)

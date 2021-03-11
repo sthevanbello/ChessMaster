@@ -26,6 +26,11 @@ namespace ChessMaster.BoardChess
         {
             QuantityMovies++;
         }
+        public void DecreaseQuantityMoves()
+        {
+            QuantityMovies--;
+        }
+
 
         public bool ExistPossiblesMoves()
         {
