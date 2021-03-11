@@ -52,33 +52,7 @@ namespace ChessMaster.Chess
                 pos.Row++;
             }
 
-            //Right
-            pos.DefineValues(Position.Row, Position.Column + 1);
-
-            while (Board.PositionValid(pos) && MoveOk(pos))
-            {
-                matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
-                {
-                    break;
-                }
-
-                pos.Column++;
-            }
-
-            //Left
-            pos.DefineValues(Position.Row, Position.Column - 1);
-
-            while (Board.PositionValid(pos) && MoveOk(pos))
-            {
-                matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
-                {
-                    break;
-                }
-
-                pos.Column--;
-            }
+            
 
             return matrix;
         }

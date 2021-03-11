@@ -27,6 +27,28 @@ namespace ChessMaster.BoardChess
             QuantityMovies++;
         }
 
+        public bool ExistPossiblesMoves()
+        {
+            bool[,] matrix = PossiblesMoves();
+
+            for (int i = 0; i < Board.Rows; i++)
+            {
+                for (int j = 0; j < Board.Columns; j++)
+                {
+                    if (matrix[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        
+        public bool CanMovePosition(Position pos)
+        {
+            return PossiblesMoves()[pos.Row, pos.Column];
+        }
+
         public abstract bool[,] PossiblesMoves();
     }
 }

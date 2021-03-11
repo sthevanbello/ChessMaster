@@ -32,56 +32,56 @@ namespace ChessMaster.Chess
 
             //Up
             pos.DefineValues(Position.Row - 1, Position.Column);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
 
             //Diagonal right up
             pos.DefineValues(Position.Row - 1, Position.Column + 1);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
 
             //Right
             pos.DefineValues(Position.Row, Position.Column + 1);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
 
             //Diagonal right down
             pos.DefineValues(Position.Row + 1, Position.Column + 1);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
 
             //Down
             pos.DefineValues(Position.Row + 1, Position.Column);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
 
             //Diagonal left down
             pos.DefineValues(Position.Row + 1, Position.Column - 1);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
 
             //Left
             pos.DefineValues(Position.Row, Position.Column - 1);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
 
             //Diagonal left Up
             pos.DefineValues(Position.Row - 1, Position.Column - 1);
-            if (Board.PositionValid(pos))
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
             }
