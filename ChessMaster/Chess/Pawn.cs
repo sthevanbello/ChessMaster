@@ -18,41 +18,75 @@ namespace ChessMaster.Chess
             return piece == null || piece.Color != this.Color;
         }
 
+        private bool ExistEnemy(Position pos)
+        {
+            Pieces piece = Board.PieceOnTheBoard(pos);
+            return piece != null && piece.Color != this.Color;
+        }
+
+        private bool Free(Position pos)
+        {
+            return Board.PieceOnTheBoard(pos) == null;
+        }
+
         public override bool[,] PossiblesMoves()
         {
             bool[,] matrix = new bool[Board.Rows, Board.Columns];
 
             Position pos = new Position(0, 0);
 
-            //Up
-            pos.DefineValues(Position.Row - 1, Position.Column);
 
-            while (Board.PositionValid(pos) && MoveOk(pos))
+            if (Color == Colors.White)
             {
-                matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
+                pos.DefineValues(Position.Row - 1, Position.Column);
+                if (Board.PositionValid(pos) && Free(pos))
                 {
-                    break;
+                    matrix[pos.Row, pos.Column] = true;
                 }
 
-                pos.Row--;
-            }
-
-            //Down
-            pos.DefineValues(Position.Row + 1, Position.Column);
-
-            while (Board.PositionValid(pos) && MoveOk(pos))
-            {
-                matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
+                pos.DefineValues(Position.Row - 2, Position.Column);
+                if (Board.PositionValid(pos) && Free(pos) && QuantityMovies == 0)
                 {
-                    break;
+                    matrix[pos.Row, pos.Column] = true;
                 }
 
-                pos.Row++;
+                pos.DefineValues(Position.Row - 1, Position.Column - 1);
+                if (Board.PositionValid(pos) && ExistEnemy(pos))
+                {
+                    matrix[pos.Row, pos.Column] = true;
+                }
+
+                pos.DefineValues(Position.Row - 1, Position.Column + 1);
+                if (Board.PositionValid(pos) && ExistEnemy(pos))
+                {
+                    matrix[pos.Row, pos.Column] = true;
+                }
+            }
+            else
+            {
+                pos.DefineValues(Position.Row + 1, Position.Column);
+                if (Board.PositionValid(pos) && Free(pos))
+                {
+                    matrix[pos.Row, pos.Column] = true;
+                }
+
+                pos.DefineValues(Position.Row + 2, Position.Column);
+                if (Board.PositionValid(pos) && Free(pos) && QuantityMovies == 0)
+                {
+                    matrix[pos.Row, pos.Column] = true;
+                }
+                pos.DefineValues(Position.Row + 1, Position.Column + 1);
+                if (Board.PositionValid(pos) && ExistEnemy(pos))
+                {
+                    matrix[pos.Row, pos.Column] = true;
+                }
+                pos.DefineValues(Position.Row + 1, Position.Column - 1);
+                if (Board.PositionValid(pos) && ExistEnemy(pos))
+                {
+                    matrix[pos.Row, pos.Column] = true;
+                }
             }
 
-            
 
             return matrix;
         }

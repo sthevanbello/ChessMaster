@@ -25,8 +25,8 @@ namespace ChessMaster.Chess
 
             Position pos = new Position(0, 0);
 
-            //Up
-            pos.DefineValues(Position.Row - 1, Position.Column);
+            //Right Up
+            pos.DefineValues(Position.Row - 1, Position.Column +1);
 
             while (Board.PositionValid(pos) && MoveOk(pos))
             {
@@ -36,11 +36,11 @@ namespace ChessMaster.Chess
                     break;
                 }
 
-                pos.Row--;
+                pos.DefineValues(pos.Row - 1, pos.Column + 1);
             }
 
-            //Down
-            pos.DefineValues(Position.Row + 1, Position.Column);
+            //Right Down
+            pos.DefineValues(Position.Row + 1, Position.Column + 1);
 
             while (Board.PositionValid(pos) && MoveOk(pos))
             {
@@ -50,11 +50,11 @@ namespace ChessMaster.Chess
                     break;
                 }
 
-                pos.Row++;
+                pos.DefineValues(pos.Row + 1, pos.Column + 1);
             }
 
-            //Right
-            pos.DefineValues(Position.Row, Position.Column + 1);
+            //Left Down
+            pos.DefineValues(Position.Row + 1, Position.Column - 1);
 
             while (Board.PositionValid(pos) && MoveOk(pos))
             {
@@ -64,11 +64,11 @@ namespace ChessMaster.Chess
                     break;
                 }
 
-                pos.Column++;
+                pos.DefineValues(pos.Row + 1, pos.Column - 1);
             }
 
-            //Left
-            pos.DefineValues(Position.Row, Position.Column - 1);
+            //Left Up
+            pos.DefineValues(Position.Row - 1, Position.Column - 1);
 
             while (Board.PositionValid(pos) && MoveOk(pos))
             {
@@ -78,7 +78,7 @@ namespace ChessMaster.Chess
                     break;
                 }
 
-                pos.Column--;
+                pos.DefineValues(pos.Row - 1, pos.Column - 1);
             }
 
             return matrix;

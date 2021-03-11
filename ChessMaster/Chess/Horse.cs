@@ -25,62 +25,72 @@ namespace ChessMaster.Chess
 
             Position pos = new Position(0, 0);
 
-            //Up
-            pos.DefineValues(Position.Row - 1, Position.Column);
-
-            while (Board.PositionValid(pos) && MoveOk(pos))
+            
+            pos.DefineValues(Position.Row - 1, Position.Column - 2);
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
-                {
-                    break;
-                }
-
-                pos.Row--;
             }
 
-            //Down
-            pos.DefineValues(Position.Row + 1, Position.Column);
-
-            while (Board.PositionValid(pos) && MoveOk(pos))
+            
+            pos.DefineValues(Position.Row - 1, Position.Column + 2);
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
-                {
-                    break;
-                }
-
-                pos.Row++;
             }
 
-            //Right
-            pos.DefineValues(Position.Row, Position.Column + 1);
-
-            while (Board.PositionValid(pos) && MoveOk(pos))
+            
+            pos.DefineValues(Position.Row - 2, Position.Column - 1);
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
-                {
-                    break;
-                }
-
-                pos.Column++;
             }
 
-            //Left
-            pos.DefineValues(Position.Row, Position.Column - 1);
-
-            while (Board.PositionValid(pos) && MoveOk(pos))
+            
+            pos.DefineValues(Position.Row - 2, Position.Column + 1);
+            if (Board.PositionValid(pos) && MoveOk(pos))
             {
                 matrix[pos.Row, pos.Column] = true;
-                if (Board.PieceOnTheBoard(pos) != null && Board.PieceOnTheBoard(pos).Color != this.Color)
-                {
-                    break;
-                }
-
-                pos.Column--;
             }
 
+           
+            pos.DefineValues(Position.Row - 2, Position.Column - 1);
+            if (Board.PositionValid(pos) && MoveOk(pos))
+            {
+                matrix[pos.Row, pos.Column] = true;
+            }
+
+       
+            pos.DefineValues(Position.Row - 2, Position.Column +1);
+            if (Board.PositionValid(pos) && MoveOk(pos))
+            {
+                matrix[pos.Row, pos.Column] = true;
+            }
+
+            pos.DefineValues(Position.Row + 1, Position.Column - 2);
+            if (Board.PositionValid(pos) && MoveOk(pos))
+            {
+                matrix[pos.Row, pos.Column] = true;
+            }
+
+          
+            pos.DefineValues(Position.Row + 1, Position.Column + 2);
+            if (Board.PositionValid(pos) && MoveOk(pos))
+            {
+                matrix[pos.Row, pos.Column] = true;
+            }
+
+            pos.DefineValues(Position.Row + 2, Position.Column - 1);
+            if (Board.PositionValid(pos) && MoveOk(pos))
+            {
+                matrix[pos.Row, pos.Column] = true;
+            }
+
+            pos.DefineValues(Position.Row + 2, Position.Column + 1);
+            if (Board.PositionValid(pos) && MoveOk(pos))
+            {
+                matrix[pos.Row, pos.Column] = true;
+            }
             return matrix;
         }
 
