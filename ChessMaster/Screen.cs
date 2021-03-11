@@ -16,15 +16,28 @@ namespace ChessMaster
             Console.WriteLine();
             PrintCatchedPieces(game);
             Console.WriteLine($"\n\nTurno: {game.Turn}");
-            Console.WriteLine($"\nWaiting for player: {game.ActualPlayer}");
-            if (game.Xeque)
+            if (!game.Finished)
+            {
+                Console.WriteLine($"\nWaiting for player: {game.ActualPlayer}");
+                if (game.Xeque)
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("XEQUE!");
+                    Console.ForegroundColor = aux;
+
+                }
+            }
+            else
             {
                 ConsoleColor aux = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("XEQUE!");
+                Console.WriteLine("XEQUE MATE!");
                 Console.ForegroundColor = aux;
-
+                Console.WriteLine($"Player winner: {game.ActualPlayer}");
             }
+
+           
         }
 
         public static void PrintCatchedPieces(GameChess game)

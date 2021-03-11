@@ -41,6 +41,10 @@ namespace ChessMaster
                     }
                    
                 }
+                Console.Clear();
+                Screen.PrintGame(game);
+
+
             }
             catch (BoardException ex)
             {

@@ -81,9 +81,16 @@ namespace ChessMaster.Chess
             {
                 Xeque = false;
             }
-
+            if (TestXequeMate(Enemy(ActualPlayer)))
+            {
+                Finished = true;
+            }
+            else
+            {
             Turn++;
             ChangePlayer();
+            }
+
 
         }
 
@@ -198,6 +205,38 @@ namespace ChessMaster.Chess
             }
             return false;
 
+        }
+
+        public bool TestXequeMate(Colors color)
+        {
+            if (!InXeque(color))
+            {
+                return false;
+            }
+
+            foreach (var item in PiecesInGame(color))
+            {
+                bool[,] mat = item.PossiblesMoves();
+                for (int i = 0; i < Board.Rows; i++)
+                {
+                    for (int j = 0; j < Board.Columns; j++)
+                    {
+                        if (mat[i,j])
+                        {
+                            Position origin = item.Position;
+                            Position destiny = new Position(i, j);
+                            Pieces catchPiece = MoveExecute(origin, destiny);
+                            bool testXeque = InXeque(color);
+                            ReturnMove(origin, destiny, catchPiece);
+                            if (!testXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public void PalcingNewPiece(char column, int row, Pieces piece)
