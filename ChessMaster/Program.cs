@@ -16,12 +16,7 @@ namespace ChessMaster
                     try
                     {
                         Console.Clear();
-                        Screen.PrintBoard(game.Board);
-
-                        Console.WriteLine();
-
-                        Console.WriteLine($"\nTurno: {game.Turn}");
-                        Console.WriteLine($"Waiting for player: {game.ActualPlayer}");
+                        Screen.PrintGame(game);
 
 
                         Console.Write("\n\nOrigin: ");

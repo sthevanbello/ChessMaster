@@ -9,6 +9,41 @@ namespace ChessMaster
 {
     class Screen
     {
+        public static void PrintGame(GameChess game)
+        {
+            PrintBoard(game.Board);
+
+            Console.WriteLine();
+            PrintCatchedPieces(game);
+            Console.WriteLine($"\n\nTurno: {game.Turn}");
+            Console.WriteLine($"\nWaiting for player: {game.ActualPlayer}");
+        }
+
+        public static void PrintCatchedPieces(GameChess game)
+        {
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.WriteLine("\nCatched pieces: ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"White: ");
+            PrintSet(game.CatchedPieces(Colors.White));
+            Console.ForegroundColor = aux;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"\nBlack: ");
+            PrintSet(game.CatchedPieces(Colors.Black));
+            Console.ForegroundColor = aux;
+            
+        }
+
+        public static void PrintSet(HashSet<Pieces> set)
+        {
+            Console.Write("[");
+            foreach (var item in set)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.Write("]");
+
+        }
 
         public static void PrintBoard(Board board)
         {
@@ -19,7 +54,7 @@ namespace ChessMaster
 
                 for (int j = 0; j < board.Columns; j++)
                 {
-                        PrintingPiece(board.PieceOnTheBoard(i, j));
+                    PrintingPiece(board.PieceOnTheBoard(i, j));
                 }
 
                 Console.WriteLine();
@@ -38,7 +73,7 @@ namespace ChessMaster
 
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    if (possiblesPosition[i,j])
+                    if (possiblesPosition[i, j])
                     {
                         Console.BackgroundColor = altered;
                     }
@@ -54,7 +89,7 @@ namespace ChessMaster
             }
 
             Console.Write($"  a b c d e f g h");
-            
+
         }
 
         public static void PrintingPiece(Pieces piece)
