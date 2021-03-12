@@ -46,6 +46,28 @@ namespace ChessMaster.Chess
             {
                 catched.Add(catchPiece);
             }
+
+            //# Specialmove Castle small
+            if (piece is King && destiny.Column == origin.Column + 2)
+            {
+                Position rookOrigin = new Position(origin.Row, origin.Column + 3);
+                Position rookDestiny = new Position(origin.Row, origin.Column + 1);
+                Pieces rook = Board.RemovePiece(rookOrigin);
+                rook.IncreaseQuantityMoves();
+                Board.InputPiece(rook, rookDestiny);
+
+            }
+            // #Specialmove Castle big
+            if (piece is King && destiny.Column == origin.Column - 2)
+            {
+                Position rookOrigin = new Position(origin.Row, origin.Column - 4);
+                Position rookDestiny = new Position(origin.Row, origin.Column - 1);
+                Pieces rook = Board.RemovePiece(rookOrigin);
+                rook.IncreaseQuantityMoves();
+                Board.InputPiece(rook, rookDestiny);
+
+            }
+
             return catchPiece;
         }
 
@@ -62,6 +84,27 @@ namespace ChessMaster.Chess
             }
             Board.InputPiece(piece, origin);
 
+            // #Specialmove Castle small
+            if (piece is King && destiny.Column == origin.Column + 2)
+            {
+                Position rookOrigin = new Position(origin.Row, origin.Column + 3);
+                Position rookDestiny = new Position(origin.Row, origin.Column + 1);
+                Pieces rook = Board.RemovePiece(rookDestiny);
+                rook.IncreaseQuantityMoves();
+                Board.InputPiece(rook, rookOrigin);
+
+            }
+
+            // #Specialmove Castle big
+            if (piece is King && destiny.Column == origin.Column - 2)
+            {
+                Position rookOrigin = new Position(origin.Row, origin.Column - 4);
+                Position rookDestiny = new Position(origin.Row, origin.Column - 1);
+                Pieces rook = Board.RemovePiece(rookDestiny);
+                rook.IncreaseQuantityMoves();
+                Board.InputPiece(rook, rookOrigin);
+
+            }
         }
 
         public void MakeMove(Position origin, Position destiny)
@@ -239,7 +282,7 @@ namespace ChessMaster.Chess
             return true;
         }
 
-        public void PalcingNewPiece(char column, int row, Pieces piece)
+        public void PlacingNewPiece(char column, int row, Pieces piece)
         {
             Board.InputPiece(piece, new ChessPosition(column, row).ToPosition());
             pieces.Add(piece);
@@ -247,42 +290,42 @@ namespace ChessMaster.Chess
 
         private void PlacingPieces()
         {
-            PalcingNewPiece('a', 1, new Rook(Board, Colors.White));
-            PalcingNewPiece('h', 1, new Rook(Board, Colors.White));
-            PalcingNewPiece('b', 1, new Horse(Board, Colors.White));
-            PalcingNewPiece('g', 1, new Horse(Board, Colors.White));
-            PalcingNewPiece('c', 1, new Bishop(Board, Colors.White));
-            PalcingNewPiece('f', 1, new Bishop(Board, Colors.White));
-            PalcingNewPiece('e', 1, new Queen(Board, Colors.White));
-            PalcingNewPiece('d', 1, new King(Board, Colors.White));
+            PlacingNewPiece('a', 1, new Rook(Board, Colors.White));
+            PlacingNewPiece('h', 1, new Rook(Board, Colors.White));
+            PlacingNewPiece('b', 1, new Horse(Board, Colors.White));
+            PlacingNewPiece('g', 1, new Horse(Board, Colors.White));
+            PlacingNewPiece('c', 1, new Bishop(Board, Colors.White));
+            PlacingNewPiece('f', 1, new Bishop(Board, Colors.White));
+            PlacingNewPiece('d', 1, new Queen(Board, Colors.White));
+            PlacingNewPiece('e', 1, new King(Board, Colors.White, this));
 
-            PalcingNewPiece('a', 2, new Pawn(Board, Colors.White));
-            PalcingNewPiece('b', 2, new Pawn(Board, Colors.White));
-            PalcingNewPiece('c', 2, new Pawn(Board, Colors.White));
-            PalcingNewPiece('d', 2, new Pawn(Board, Colors.White));
-            PalcingNewPiece('e', 2, new Pawn(Board, Colors.White));
-            PalcingNewPiece('f', 2, new Pawn(Board, Colors.White));
-            PalcingNewPiece('g', 2, new Pawn(Board, Colors.White));
-            PalcingNewPiece('h', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('a', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('b', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('c', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('d', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('e', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('f', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('g', 2, new Pawn(Board, Colors.White));
+            PlacingNewPiece('h', 2, new Pawn(Board, Colors.White));
 
 
-            PalcingNewPiece('a', 8, new Rook(Board, Colors.Black));
-            PalcingNewPiece('h', 8, new Rook(Board, Colors.Black));
-            PalcingNewPiece('b', 8, new Horse(Board, Colors.Black));
-            PalcingNewPiece('g', 8, new Horse(Board, Colors.Black));
-            PalcingNewPiece('c', 8, new Bishop(Board, Colors.Black));
-            PalcingNewPiece('f', 8, new Bishop(Board, Colors.Black));
-            PalcingNewPiece('e', 8, new Queen(Board, Colors.Black));
-            PalcingNewPiece('d', 8, new King(Board, Colors.Black));
+            PlacingNewPiece('a', 8, new Rook(Board, Colors.Black));
+            PlacingNewPiece('h', 8, new Rook(Board, Colors.Black));
+            PlacingNewPiece('b', 8, new Horse(Board, Colors.Black));
+            PlacingNewPiece('g', 8, new Horse(Board, Colors.Black));
+            PlacingNewPiece('c', 8, new Bishop(Board, Colors.Black));
+            PlacingNewPiece('f', 8, new Bishop(Board, Colors.Black));
+            PlacingNewPiece('d', 8, new Queen(Board, Colors.Black));
+            PlacingNewPiece('e', 8, new King(Board, Colors.Black, this));
 
-            PalcingNewPiece('a', 7, new Pawn(Board, Colors.Black));
-            PalcingNewPiece('b', 7, new Pawn(Board, Colors.Black));
-            PalcingNewPiece('c', 7, new Pawn(Board, Colors.Black));
-            PalcingNewPiece('d', 7, new Pawn(Board, Colors.Black));
-            PalcingNewPiece('e', 7, new Pawn(Board, Colors.Black));
-            PalcingNewPiece('f', 7, new Pawn(Board, Colors.Black));
-            PalcingNewPiece('g', 7, new Pawn(Board, Colors.Black));
-            PalcingNewPiece('h', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('a', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('b', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('c', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('d', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('e', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('f', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('g', 7, new Pawn(Board, Colors.Black));
+            PlacingNewPiece('h', 7, new Pawn(Board, Colors.Black));
 
         }
     }
