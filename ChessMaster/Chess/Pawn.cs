@@ -9,8 +9,10 @@ namespace ChessMaster.Chess
 {
     class Pawn : Pieces
     {
-        public Pawn(Board board, Colors color) : base(board, color)
+        private GameChess Game;
+        public Pawn(Board board, Colors color, GameChess game) : base(board, color)
         {
+            Game = game;
         }
         private bool MoveOk(Position position)
         {
@@ -61,6 +63,23 @@ namespace ChessMaster.Chess
                 {
                     matrix[pos.Row, pos.Column] = true;
                 }
+
+                //# Specialmove En passant
+                if (Position.Row == 3)
+                {
+                    Position left = new Position(Position.Row, Position.Column - 1);
+                    if (Board.PositionValid(left) && ExistEnemy(left) && Board.PieceOnTheBoard(left) == Game.VulnerableEnPassant)
+                    {
+                        matrix[left.Row - 1, left.Column] = true;
+                    }
+
+                    Position right = new Position(Position.Row, Position.Column + 1);
+                    if (Board.PositionValid(right) && ExistEnemy(right) && Board.PieceOnTheBoard(right) == Game.VulnerableEnPassant)
+                    {
+                        matrix[right.Row - 1, right.Column] = true;
+                    }
+
+                }
             }
             else
             {
@@ -85,10 +104,25 @@ namespace ChessMaster.Chess
                 {
                     matrix[pos.Row, pos.Column] = true;
                 }
+
+                if (Position.Row == 4)
+                {
+                    Position left = new Position(Position.Row, Position.Column - 1);
+                    if (Board.PositionValid(left) && ExistEnemy(left) && Board.PieceOnTheBoard(left) == Game.VulnerableEnPassant)
+                    {
+                        matrix[left.Row + 1, left.Column] = true;
+                    }
+
+
+                    Position right = new Position(Position.Row, Position.Column + 1);
+                    if (Board.PositionValid(right) && ExistEnemy(right) && Board.PieceOnTheBoard(right) == Game.VulnerableEnPassant)
+                    {
+                        matrix[right.Row + 1, right.Column] = true;
+                    }
+                }
             }
-
-
-            return matrix;
+            
+                return matrix;
         }
         public override string ToString()
         {
