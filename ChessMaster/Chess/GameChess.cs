@@ -160,6 +160,24 @@ namespace ChessMaster.Chess
                 ReturnMove(origin, destiny, catchPiece);
                 throw new BoardException("You can't put yourself in XEQUE!");
             }
+            Pieces piece = Board.PieceOnTheBoard(destiny);
+
+            // #Specialmove promotion
+
+            if (piece is Pawn)
+            {
+                if ((piece.Color == Colors.White && destiny.Row == 0) || (piece.Color == Colors.Black && destiny.Row == 7))
+                {
+
+                    piece = Board.RemovePiece(destiny);
+                    pieces.Remove(piece);
+                    Pieces queen = new Queen(Board, piece.Color);
+                    Board.InputPiece(queen, destiny);
+                    pieces.Add(queen);
+                }
+            }
+
+
             if (InXeque(Enemy(ActualPlayer)))
             {
                 Xeque = true;
@@ -178,7 +196,6 @@ namespace ChessMaster.Chess
             ChangePlayer();
             }
 
-            Pieces piece = Board.PieceOnTheBoard(destiny);
 
             // #Specialmove En Passant
             if (piece is Pawn && (destiny.Row == origin.Row - 2 || destiny.Row == origin.Row + 2))
