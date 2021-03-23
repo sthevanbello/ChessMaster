@@ -37,7 +37,7 @@ namespace ChessMaster
                 Console.WriteLine($"Player winner: {game.ActualPlayer}");
             }
 
-           
+
         }
 
         public static void PrintCatchedPieces(GameChess game)
@@ -141,15 +141,34 @@ namespace ChessMaster
 
         public static ChessPosition ReadPositionChess()
         {
-
+            Begin:
             string s = Console.ReadLine();
-            char column = s[0];
-            int row = int.Parse($"{s[1]}");
-
+            if (s == "")
+            {
+                goto Begin;
+            }
+            else
+            {
+                char column = s[0];
+                int row = int.Parse($"{s[1]}");
             return new ChessPosition(column, row);
+            }
         }
 
     }
 
 }
+//char column = ' ';
+//int row = 0;
+//string s = "";
 
+//while (s.Length == 0)
+//{
+//    s = Console.ReadLine();
+//    if (s == null)
+//    {
+//        column = s[0];
+//        row = int.Parse($"{s[1]}");
+//    }
+
+//}

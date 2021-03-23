@@ -227,7 +227,7 @@ namespace ChessMaster.Chess
 
         public void CheckOriginPosition(Position pos)
         {
-
+            
             if (Board.PieceOnTheBoard(pos) == null)
             {
                 throw new BoardException("There is no piece in this choice position");
